@@ -54,3 +54,4 @@ public class DisponibiliteController {
         return disponibiliteService.findByProfessionnelId(professionnelId);
     }
 }
+

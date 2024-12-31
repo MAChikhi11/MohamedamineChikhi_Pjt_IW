@@ -1,0 +1,38 @@
+<div class="container mt-5">
+    <h2>Page de Connexion</h2>
+  
+    <div *ngIf="message" class="alert alert-info mt-3">
+      {{ message }}
+    </div>
+  
+    <form (ngSubmit)="connecter()">
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input
+          type="email"
+          id="email"
+          class="form-control"
+          [(ngModel)]="email"
+          name="email"
+          required
+          placeholder="Entrez votre email"
+        />
+      </div>
+  
+      <div class="mb-3">
+        <label for="motDePasse" class="form-label">Mot de Passe</label>
+        <input
+          type="password"
+          id="motDePasse"
+          class="form-control"
+          [(ngModel)]="motDePasse"
+          name="motDePasse"
+          required
+          placeholder="Entrez votre mot de passe"
+        />
+      </div>
+  
+      <button type="submit" class="btn btn-primary">Se connecter</button>
+    </form>
+  </div>
+  

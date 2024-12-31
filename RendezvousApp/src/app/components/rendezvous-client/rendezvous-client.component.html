@@ -1,0 +1,73 @@
+<div class="container mt-5">
+  <h2>Disponibilités</h2>
+  <div class="row">
+    <div class="col-md-6">
+      <h4>Liste des disponibilités</h4>
+      <div *ngIf="disponibilites.length > 0; else noDisponibilites">
+        <div *ngFor="let disponibilite of disponibilites" class="card mb-3">
+          <div class="card-body">
+            <h5 class="card-title">{{ disponibilite.date }} - {{ disponibilite.heureDebut }} à {{ disponibilite.heureFin }}</h5>
+            <p class="card-text">Professionnel: {{ disponibilite.professionnelId }}</p>
+            <button 
+              class="btn btn-primary"
+              (click)="reserverRendezVous(disponibilite)">
+              Réserver
+            </button>
+          </div>
+        </div>
+      </div>
+      <ng-template #noDisponibilites>
+        <p>Aucune disponibilité disponible.</p>
+      </ng-template>
+    </div>
+
+    <div class="col-md-6">
+      <h4>Mes rendez-vous</h4>
+      <div *ngIf="rendezvous.length > 0; else noRendezvous">
+        <div *ngFor="let rendezvousItem of filterRendezVous()" class="card mb-3">
+          <div class="card-body">
+            <h5 class="card-title">{{ rendezvousItem.date }} - {{ rendezvousItem.heure }}</h5>
+            <p class="card-text">Professionnel: {{ rendezvousItem.professionnelId }}</p>
+            <p class="card-text">Statut: {{ rendezvousItem.statut }}</p>
+            <button 
+              class="btn btn-danger"
+              (click)="supprimerRendezVous(rendezvousItem.id)">
+              Annuler
+            </button>
+          </div>
+        </div>
+      </div>
+      <ng-template #noRendezvous>
+        <p>Aucun rendez-vous réservé.</p>
+      </ng-template>
+    </div>
+  </div>
+
+  <hr>
+
+  <h4>Filtrer les rendez-vous</h4>
+  <div class="form-group">
+    <label for="professionnelId">Professionnel</label>
+    <input 
+      type="number" 
+      class="form-control" 
+      id="professionnelId" 
+      [(ngModel)]="filtreProfessionnelId" 
+      placeholder="Filtrer par professionnel">
+  </div>
+
+  <div class="form-group">
+    <label for="date">Date</label>
+    <input 
+      type="date" 
+      class="form-control" 
+      id="date" 
+      [(ngModel)]="filtreDate">
+  </div>
+
+  <div>
+    <!-- Bouton de déconnexion -->
+  <button class="btn btn-danger" (click)="deconnecter()">Se Déconnecter</button>
+</div>
+  </div>
+

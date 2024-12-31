@@ -1,0 +1,70 @@
+<div class="container mt-4">
+    <h3>Mes Disponibilités</h3>
+    <div class="alert" *ngIf="message">{{ message }}</div>
+  
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Heure Début</th>
+          <th>Heure Fin</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let disponibilite of disponibilites">
+          <td>{{ disponibilite.date }}</td>
+          <td>{{ disponibilite.heureDebut }}</td>
+          <td>{{ disponibilite.heureFin }}</td>
+          <td>
+            <button class="btn btn-warning" (click)="editDisponibilite(disponibilite)">Modifier</button>
+            <button class="btn btn-danger" (click)="deleteDisponibilite(disponibilite.id)">Supprimer</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <div *ngIf="selectedDisponibilite" class="mt-4">
+      <h4>Modifier la Disponibilité</h4>
+      <form (ngSubmit)="updateDisponibilite()">
+        <div class="mb-3">
+          <label for="date" class="form-label">Date</label>
+          <input type="date" class="form-control" id="date" [(ngModel)]="selectedDisponibilite.date" name="date" required>
+        </div>
+        <div class="mb-3">
+          <label for="heureDebut" class="form-label">Heure de début</label>
+          <input type="time" class="form-control" id="heureDebut" [(ngModel)]="selectedDisponibilite.heureDebut" name="heureDebut" required>
+        </div>
+        <div class="mb-3">
+          <label for="heureFin" class="form-label">Heure de fin</label>
+          <input type="time" class="form-control" id="heureFin" [(ngModel)]="selectedDisponibilite.heureFin" name="heureFin" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Mettre à jour</button>
+      </form>
+    </div>
+  
+    <div class="mt-4">
+      <h4>Ajouter une Disponibilité</h4>
+      <form (ngSubmit)="addDisponibilite()">
+        <div class="mb-3">
+          <label for="date" class="form-label">Date</label>
+          <input type="date" class="form-control" [(ngModel)]="newDisponibilite.date" name="date" required>
+        </div>
+        <div class="mb-3">
+          <label for="heureDebut" class="form-label">Heure de début</label>
+          <input type="time" class="form-control" [(ngModel)]="newDisponibilite.heureDebut" name="heureDebut" required>
+        </div>
+        <div class="mb-3">
+          <label for="heureFin" class="form-label">Heure de fin</label>
+          <input type="time" class="form-control" [(ngModel)]="newDisponibilite.heureFin" name="heureFin" required>
+        </div>
+        <button type="submit" class="btn btn-success">Ajouter</button>
+      </form>
+    </div>
+    <div>
+      <!-- Bouton de déconnexion -->
+    <button class="btn btn-danger" (click)="deconnecter()">Se Déconnecter</button>
+  </div>
+    </div>
+ 
+  
